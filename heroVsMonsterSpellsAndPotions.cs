@@ -2,7 +2,8 @@ double hero = 50;
 double heroMana = 20;
 double monster = 50;
 double potions = 4;
-double weakToFire = 2;
+double weakToFire = 1.5;
+double weakToIce = 0.5;
 double heroIntelligence = 2;
 double heroDefense = 0.7;
 double heroStrength = 1.5;
@@ -12,14 +13,27 @@ do
 {
     Console.WriteLine("What will you do?");
     string? answer = Console.ReadLine();
+    if (answer == "freeze")
+    {
+        if(heroMana > 4)
+        {
+            heroMana -= 2;
+            double freeze = (heroIntelligence * weakToIce * roll);
+            monster -= freeze;
+            Console.WriteLine($"Monster was hit with freeze for {freeze} health points! Monster now has {monster} health points!");
+
+        }
+    }
     if (answer == "heal")
     {
-        if (heroMana > 2)
+        if (heroMana > 4)
         {
             heroMana -= 4;
             double heal = (heroIntelligence * 4);
             hero += heal;
             Console.WriteLine($"Hero used Heal and received {heal} health points!");
+        }else{
+            Console.WriteLine("Not enough Mana so use this spell!");
         }
     }
     if (answer == "fireball")
